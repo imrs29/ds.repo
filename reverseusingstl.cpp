@@ -4,11 +4,13 @@ using namespace std;
 int main(){
 
 	vector<int>arr;
-
-	for(int i = 0;i<9;i++){
-		int val;
-		cin>>val;
-		arr.push_back(val);
+	int size;
+	int a;
+	cin>>size;
+	for(int i = 0;i<size;i++){
+	
+		cin>>a;
+		arr.push_back(a);
 
 	}
 
