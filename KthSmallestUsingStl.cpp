@@ -1,19 +1,38 @@
-// TIME COMPLEXITY O(NLOGN)
 #include<bits/stdc++.h>
 using namespace std;
 
 int main(){
-    vector<int>arr;
-    int size;
-    cin>>size;
-    int val;
-    for(int i = 0;i<size;i++){
-        cin >> val;
-        arr.push_back(val);
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        int a[n];
+        for(int i = 0;i<n;i++){
+            cin >> a[i];
+        }
+
+        int k;
+        cin >> k;
+
+        priority_queue<int, vector<int>, greater<int>> q;
+        for(int i = 0;i<n;i++){
+            q.push(a[i]);
+        }
+
+        int ans, i = 1;
+        while(!q.empty()){
+            if(i == k){
+                ans = q.top();
+                break;
+            }
+
+            i++;
+            q.pop();
+        }
+        cout << ans << "\n";
     }
 
-    int k;
-    cin>>k;
-    sort(arr.begin(),arr.end());
-    cout << arr[k-1];
+    return 0;
+
 }
