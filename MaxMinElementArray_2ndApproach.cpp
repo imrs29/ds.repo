@@ -16,3 +16,5 @@ int main(){
     sort(arr.begin(),arr.end());
     cout << arr[k-1];
 }
+
+//Time Complexity = O(n^2)
