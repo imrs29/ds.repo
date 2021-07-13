@@ -4,7 +4,8 @@ using namespace std;
 // bfs is implemented using a queue data structure
 //dfs is implemented using stack data structure
 
-
+//tc = O(v+e)
+//space = o(v) queue
 class Solution
 {
     public:
