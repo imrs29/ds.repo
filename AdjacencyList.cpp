@@ -2,7 +2,8 @@
 using namespace std;
 
 //adjacency List
-// O(v*v) both worst case and best case
+// O(v*v)  worst case for the connected graph
+// O(v+e) best case
 
 int main(){
     int v,e;
