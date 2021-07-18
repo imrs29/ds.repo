@@ -1,49 +1,48 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-/*1. Mark the current node as visited and also mark the index in recursion stack.
-2. find all the vertices which are not visited and are adjacent to the current node.
-3. If the adjacent vertices are already marked in the recursion stack then a cycle is found. */
+/* 1. Visit the nodes in a depth-first fashion
+   2. If the node is not visited, visit that node and its neighbour recursively 
+   Each time a unvisited node is found, a new component will be found */
 
-bool iscycle(int src, vector<vector<int>> &adj, vector<bool> &visited, vector<int> &stack){
-    stack[src] = true;
-    if(!visited[src]){
-        visited[src] = true;
-        for(auto i : adj[src]){
-            if(!visited[i] and iscycle(i,adj,visited,stack)){
-                return true;
-            }
-            if(stack[i])
-                return true;
+vector<bool> vis;
+int n, m;
+vector<vector<int>> adj;
+vector<int> components;
+
+int get_comp(int idx){
+
+    if(vis[idx])
+        return 0;
+    vis[idx] = true;
+    int ans = 1;
+    for(auto i : adj[idx]){
+        if(!vis[i]){
+            ans += get_comp(i);
+            vis[i] = true;
         }
     }
-    stack[src] = false;
-    return false;
+    return ans;
 }
 int main(){
 
-    int n , m;
     cin >> n >> m;
-    vector<vector<int>> adj(n);
+    adj = vector<vector<int>>(n);
+    vis = vector<bool>(n,0);
     for(int i = 0; i < m; i++){
-        int u , v;
+        int u,v;
         cin >> u >> v;
         adj[u].push_back(v);
-        
+        adj[v].push_back(u);
     }
 
-    bool cycle = false;
-    vector<int> stack(n,0);
-    vector<bool> visited(n,0);
     for(int i = 0; i < n; i++){
-        if(!visited[i] and iscycle(i,adj,visited,stack)){
-            cycle = true;
+        if(!vis[i]){
+            components.push_back(get_comp(i));
         }
     }
-    if(cycle)
-        cout << "Cycle is present";
-    else{
-        cout << " Cycle is not present";
+    for(auto i : components){
+        cout << i << " ";
     }
     return 0;
 }
