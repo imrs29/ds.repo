@@ -4,7 +4,8 @@ using namespace std;
 // sort first
 // end >= start --> merge 
 // let stack
-
+// tc O(nlogn)
+// sc O(n)
 int main(){
     int n;
     cin >> n;
